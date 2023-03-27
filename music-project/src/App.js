@@ -2,14 +2,15 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from 'axios';
 
+
 function App() {
+    
     const CLIENT_ID = "d7a2390fb70f40daabcd0b4e18015d30"
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
 
     const [token, setToken] = useState("")
-
     const [searchKey, setSearchKey] = useState("")
     const [artists, setArtists] = useState([])
     const [songs, setSongs] = useState([])
