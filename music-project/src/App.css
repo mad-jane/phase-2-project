@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +40,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 30px;
+    background-color: magenta;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    opacity: 0.7;
+    z-index: 2;
+    height: 20px;
+}
+
+.navlinks li, a{
+  font-family: "Lobster";
+  font-weight: 400;
+  font-size: 20px;
+  text-decoration: none;
+  color: #edf0f1;
+  background-color: magenta;
+  padding: 10px 20px 10px 20px;
+  list-style: none;
+  display: inline-block;
 }

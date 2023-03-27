@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from 'axios';
+import Navbar from './components/Navbar';
 
 
 function App() {
     
-    const CLIENT_ID = "d7a2390fb70f40daabcd0b4e18015d30"
+    const CLIENT_ID = "258f4aee5f9046da98df8bf5f53cd770"
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
@@ -116,7 +117,9 @@ const handleSubmit = () => {
 
     return (
         <div className="App">
+            <Navbar />
             <header className="App-header">
+                <img src="music-project/assets/transparent_2_audio_house.png" alt='audio-house-logo'></img>
                 <h1>Search Music</h1>
                 {!token ?
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
