@@ -1,5 +1,4 @@
 import React from "react";
-import TopTracks from "./TopTracks";
 import {Link} from 'react-router-dom'
 
 function Navbar({searchKey, token}) {
@@ -8,11 +7,11 @@ function Navbar({searchKey, token}) {
         <header className="navbar">
             <nav>
                 <ul className="navlinks">
-                    <Link href="#"><li>Home</li></Link>
-                    <Link href="#"><li>Songs</li></Link>
-                    <Link href="#"><li>Artists</li></Link>
-                    <Link to='/top_tracks' > <li>Top 50 Songs</li></Link>
-                    <Link><li>Top 50 Artists</li></Link>
+                    <Link to="/"><li>Home</li></Link>
+                    <Link to="/songs"><li>Songs</li></Link>
+                    <Link to="/artists"><li>Artists</li></Link>
+                    <Link to='/top_tracks'><li>Top 50 Songs</li></Link>
+                    <Link to='/top_artists'><li>Top 50 Artists</li></Link>
                 </ul>
             </nav>
     </header>

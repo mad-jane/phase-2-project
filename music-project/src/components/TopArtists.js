@@ -1,5 +1,5 @@
 
-function Songs() {
+function TopArtists() {
     
     return(
         <div>
@@ -8,4 +8,4 @@ function Songs() {
     )
 }
 
-export default Songs;
+export default TopArtists;

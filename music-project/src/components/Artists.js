@@ -1,5 +1,4 @@
-
-function Songs() {
+function Artists() {
     
     return(
         <div>
@@ -8,4 +7,4 @@ function Songs() {
     )
 }
 
-export default Songs;
+export default Artists;

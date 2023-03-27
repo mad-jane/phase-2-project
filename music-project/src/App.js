@@ -6,6 +6,9 @@ import logo from './assets/transparent_2_audio_house.png'
 import Header from './components/Header'
 import {Routes, Route, Link} from 'react-router-dom'
 import TopTracks from './components/TopTracks';
+import Songs from './components/Songs';
+import Artists from './components/Artists';
+import TopArtists from './components/TopArtists';
 
 
 function App() {
@@ -72,7 +75,10 @@ function App() {
         <div className="App">
             <Navbar/>
             <Routes>
-                <Route path = "/top_tracks" element={<TopTracks token={token} searchKey={searchKey}/>} />
+                <Route path="/songs" element={<Songs />}/>
+                <Route path="/artists" element={<Artists />}/>
+                <Route path="/top_tracks" element={<TopTracks token={token} searchKey={searchKey}/>}/>
+                <Route path="/top_artists" element={<TopArtists />}/>
                 <Route path="/" element={ <Header 
                 logo={logo} 
                 clientId={CLIENT_ID} 
@@ -81,7 +87,7 @@ function App() {
                 responseType={RESPONSE_TYPE} 
                 token={token} 
                 logout={logout}/>} />
-                <div>
+            <div>
                 <h1>Search Music</h1>
                 <form onSubmit={(e) => searchResults(e)}>
                     <input type="text" placeholder="Search Songs and Artists" onChange={e => setSearchKey(e.target.value)}/>
