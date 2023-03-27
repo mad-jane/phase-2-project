@@ -2,19 +2,22 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from 'axios';
 import Navbar from './components/Navbar';
+import logo from './assets/transparent_2_audio_house.png'
+import Header from './components/Header'
+import {Routes, Route, Link} from 'react-router-dom'
+import TopTracks from './components/TopTracks';
 
 
 function App() {
     
-    const CLIENT_ID = "258f4aee5f9046da98df8bf5f53cd770"
+    const CLIENT_ID = "d7a2390fb70f40daabcd0b4e18015d30"
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
 
     const [token, setToken] = useState("")
     const [searchKey, setSearchKey] = useState("")
-    const [artists, setArtists] = useState([])
-    const [songs, setSongs] = useState([])
+    const [search, setSearch] = useState([])
     // const [categories, setCategories] = useState([])
 
     useEffect(() => {
@@ -37,110 +40,56 @@ function App() {
         window.localStorage.removeItem("token")
     }
 
-    const searchArtists = async () => {
-        // e.preventDefault()
+    const searchResults = async (e) => {
+        e.preventDefault()
+        const params = new URLSearchParams()
+        params.append("q", searchKey)
+        params.append("type", "artist")
+        params.append("type", "track")
         const {data} = await axios.get("https://api.spotify.com/v1/search", {
             headers: {
                 Authorization: `Bearer ${token}`
             },
-            params: {
-                q: searchKey,
-                type: "artist"
-            }
+            params: params
         })
     
-        setArtists(data.artists.items)
+        setSearch(data.artists.items)
+        console.log(params)
     }
 
-    const renderArtists = () => {
-    return artists.map(artist => (
-        <div key={artist.id}>
-            {artist.images.length ? <img width={"30%"} src={artist.images[0].url} alt=""/> : <div>**No Image**</div>}
+    const renderSearch = () => {
+    return search.map(result => (
+        <div key={result.id}>
+            {result.images.length ? <img width={"30%"} src={result.images[0].url} alt=""/> : <div>**No Image**</div>}
             <br/>
-            {artist.name}
+            {result.name}
         </div>
     ))
 }
-
-const searchSongs = async () => {
-    // e.preventDefault()
-    const {data} = await axios.get("https://api.spotify.com/v1/tracks", {
-        headers: {
-            Authorization: `Bearer ${token}`
-        },
-        params: {
-            q: searchKey,
-            type: "track"
-        }
-    })
-
-    setSongs(data.songs.items)
-}
-
-const renderSongs = () => {
-return songs.map(song => (
-    <div key={song.id}>
-        {song.images.length ? <img width={"30%"} src={song.images[0].url} alt=""/> : <div>**No Image**</div>}
-        <br/>
-        {song.name}
-    </div>
-))
-}
-
-// const searchGenres = async (e) => {
-//     e.preventDefault()
-//     const {data} = await axios.get("https://api.spotify.com/v1/browse/categories", {
-//         headers: {
-//             Authorization: `Bearer ${token}`
-//         },
-//         params: {
-//             q: searchKey,
-//             type: "category"
-//         }
-//     })
-
-//     setCategories(data.categories.items)
-// }
-
-// const renderGenres = () => {
-// return categories.map(category => (
-//     <div key={category.id}>
-//         {category.name}
-//     </div>
-// ))
-// }
-
-const handleSubmit = () => {
-    searchArtists()
-    searchSongs()
-}
+    
 
     return (
         <div className="App">
-            <Navbar />
-            <header className="App-header">
-                <img src="music-project/assets/transparent_2_audio_house.png" alt='audio-house-logo'></img>
+            <Navbar/>
+            <Routes>
+                <Route path = "/top_tracks" element={<TopTracks token={token} searchKey={searchKey}/>} />
+                <Route path="/" element={ <Header 
+                logo={logo} 
+                clientId={CLIENT_ID} 
+                redirectURI={REDIRECT_URI} 
+                authEndpoint={AUTH_ENDPOINT} 
+                responseType={RESPONSE_TYPE} 
+                token={token} 
+                logout={logout}/>} />
+                <div>
                 <h1>Search Music</h1>
-                {!token ?
-                    <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
-                        to Spotify</a>
-                    : <button onClick={logout}>Logout</button>}
-                    <form onSubmit={handleSubmit}>
-                        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                        <button type={"submit"}>Search</button>
-                    </form>
-                    {/* <form onSubmit={searchSongs}>
-                        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                        <button type={"submit"}>Search</button>
-                    </form>
-                    <form onSubmit={searchGenres}>
-                        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                        <button type={"submit"}>Search</button>
-                    </form> */}
-                    {/* {renderGenres()} */}
-                    {renderSongs()}
-                    {renderArtists()}
-            </header>
+                <form onSubmit={(e) => searchResults(e)}>
+                    <input type="text" placeholder="Search Songs and Artists" onChange={e => setSearchKey(e.target.value)}/>
+                    <button type={"submit"}>Search</button>
+                    {renderSearch()}
+                </form>
+            </div>
+            </Routes>
         </div>
     );
 }

@@ -1,20 +1,25 @@
 import React from "react";
+import TopTracks from "./TopTracks";
+import {Link} from 'react-router-dom'
 
-function Navbar() {
+function Navbar({searchKey, token}) {
     
     return(
         <header className="navbar">
             <nav>
                 <ul className="navlinks">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Songs</a></li>
-                    <li><a href="#">Artists</a></li>
-                    <li><a href="#">Top 50 Songs</a></li>
-                    <li><a href="#">Top 50 Artists</a></li>
+                    <Link href="#"><li>Home</li></Link>
+                    <Link href="#"><li>Songs</li></Link>
+                    <Link href="#"><li>Artists</li></Link>
+                    <Link to='/top_tracks' > <li>Top 50 Songs</li></Link>
+                    <Link><li>Top 50 Artists</li></Link>
                 </ul>
             </nav>
     </header>
     )
 }
+
+
+// <TopTracks token={token} searchKey={searchKey}/>
 
 export default Navbar;
