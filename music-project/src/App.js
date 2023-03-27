@@ -6,7 +6,7 @@ import logo from './assets/transparent_2_audio_house.png'
 import Header from './components/Header'
 import {Routes, Route, Link} from 'react-router-dom'
 import TopTracks from './components/TopTracks';
-import Songs from './components/Songs';
+import Track from './components/Track';
 import Artists from './components/Artists';
 import TopArtists from './components/TopArtists';
 
@@ -18,7 +18,7 @@ function App() {
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
 
-    const [token, setToken] = useState("")
+    const [login, setLogin] = useState("")
     const [searchKey, setSearchKey] = useState("")
     const [search, setSearch] = useState([])
     // const [categories, setCategories] = useState([])
@@ -30,16 +30,16 @@ function App() {
         if (!token && hash) {
             token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
 
-            window.location.hash = ""
+            // window.location.hash = ""
             window.localStorage.setItem("token", token)
         }
 
-        setToken(token)
+        setLogin(token)
 
     }, [])
 
     const logout = () => {
-        setToken("")
+        setLogin("")
         window.localStorage.removeItem("token")
     }
 
@@ -51,7 +51,7 @@ function App() {
         params.append("type", "track")
         const {data} = await axios.get("https://api.spotify.com/v1/search", {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${login}`
             },
             params: params
         })
@@ -75,26 +75,22 @@ function App() {
         <div className="App">
             <Navbar/>
             <Routes>
-                <Route path="/songs" element={<Songs />}/>
+                <Route path="/track" element={<Track />}/>
                 <Route path="/artists" element={<Artists />}/>
-                <Route path="/top_tracks" element={<TopTracks token={token} searchKey={searchKey}/>}/>
-                <Route path="/top_artists" element={<TopArtists />}/>
+                <Route path="/top_tracks" element={<TopTracks token={login}/>}/>
+                <Route path="/top_artists" element={<TopArtists token={login}/>}/>
                 <Route path="/" element={ <Header 
                 logo={logo} 
                 clientId={CLIENT_ID} 
                 redirectURI={REDIRECT_URI} 
                 authEndpoint={AUTH_ENDPOINT} 
                 responseType={RESPONSE_TYPE} 
-                token={token} 
-                logout={logout}/>} />
-            <div>
-                <h1>Search Music</h1>
-                <form onSubmit={(e) => searchResults(e)}>
-                    <input type="text" placeholder="Search Songs and Artists" onChange={e => setSearchKey(e.target.value)}/>
-                    <button type={"submit"}>Search</button>
-                    {renderSearch()}
-                </form>
-            </div>
+                token={login} 
+                logout={logout}
+                searchResults={searchResults}
+                setSearchKey={setSearchKey}
+                renderSearch={renderSearch}
+                />} />
             </Routes>
         </div>
     );

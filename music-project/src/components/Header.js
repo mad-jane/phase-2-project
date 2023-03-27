@@ -1,4 +1,5 @@
-const Header = ({logo, clientId, redirectURI, authEndpoint, responseType, token, logout}) => {
+
+const Header = ({logo, clientId, redirectURI, authEndpoint, responseType, token, logout, searchResults, setSearchKey, renderSearch}) => {
     return (
         <div>
         <header className="App-header">
@@ -8,6 +9,14 @@ const Header = ({logo, clientId, redirectURI, authEndpoint, responseType, token,
                     to Spotify</a>
                 : <button onClick={logout}>Logout</button>}
         </header>
+        <div>
+                <h1>Search Music</h1>
+                <form onSubmit={(e) => searchResults(e)}>
+                    <input type="text" placeholder="Search Songs and Artists" onChange={e => setSearchKey(e.target.value)}/>
+                    <button type={"submit"}>Search</button>
+                    {renderSearch()}
+                </form>
+            </div>
         </div>
     )
 }

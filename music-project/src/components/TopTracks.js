@@ -1,41 +1,42 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import Track from './Track'
 
-const TopTracks = ({searchKey, token}) => {
-
-    const [topTracks, setTopTracks] = useState([])
-
-    const top50Tracks = async () => {
-        const {data} = await axios.get("https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF", {
-        headers: {
-            Authorization: `Bearer ${token}`
-        },
-        params: {
-            q: searchKey,
-            type: "track"
-        }
-    })
-    setTopTracks(data.songs.items)
-    }
+const TopTracks = ({token}) => {
 
     useEffect(() => {
         top50Tracks()
     }, [])
+    
+    const [topTracks, setTopTracks] = useState([])
+
+    const top50Tracks = async () => {
+        const data = await axios.get("https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: 'application/json',
+        },
+    })
+    setTopTracks(data.data.tracks.items)
+    }
+
 
 
     const renderTopTracks = () => {
-        return topTracks.map(track => (
-            <div key={track.id}>
-                {track.images.length ? <img width={"30%"} src={track.images[0].url} alt=""/> : <div>**No Image**</div>}
-                <br/>
-                {track.name}
-            </div>
-        ))
+        return topTracks.map((track) => {
+            console.log(track.track)
+            return (
+                <Track key={track.track.id} name={track.track.name} image={track.track.album.images[1].url} artist={track.track.artists[0].name}/>
+                )
+        })
     }
 
     return (
         <div>
-            {renderTopTracks()}
+            <h1>Global Top 50</h1>
+            <ol className='track-list'>
+                {renderTopTracks()}
+            </ol>
         </div>
     )
 }
