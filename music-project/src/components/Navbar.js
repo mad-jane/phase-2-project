@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 
-function Navbar({searchKey, token}) {
+function Navbar() {
     
     return(
         <header className="navbar">
@@ -16,8 +16,5 @@ function Navbar({searchKey, token}) {
     </header>
     )
 }
-
-
-// <TopTracks token={token} searchKey={searchKey}/>
 
 export default Navbar;

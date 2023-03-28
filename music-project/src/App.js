@@ -4,7 +4,7 @@ import axios from 'axios';
 import Navbar from './components/Navbar';
 import logo from './assets/transparent_2_audio_house.png'
 import Header from './components/Header'
-import {Routes, Route, Link} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 import TopTracks from './components/TopTracks';
 import Genres from './components/Genres';
 import LikedSongs from './components/LikedSongs';
@@ -54,24 +54,17 @@ function App() {
     }
 
     const renderSearch = () => {
-    return search.map((result) => {
-        if (result.includes("track")) {
-            return (
-            <div key={result.id}>
-                <br/>
-                {result.name}<button>Like!</button>
-                {result.preview_url?.length ? <audio src={result.preview_url} controls /> : null}
-            </div>
-        )} else {
-            return(
-            <div>
-                {result.images?.length ? <img width={"30%"} src={result.images[0].url} alt=""/> : <div>**No Image**</div>}
-                {result.name}
-            </div>
-            )
-        }
-    })
-}
+        return search.map(result => (
+                <div key={result.id}>
+                    {result.images?.length ? <img width={"30%"} src={result.images[0].url} alt=""/> : <div>**No Image**</div>}
+                    <br/>
+                    {result.name}<button>Like!</button>
+                    <br/>
+                    {result.preview_url?.length ? <audio src={result.preview_url} controls /> : null}
+                </div>
+        ))
+    }
+
 
     return (
         <div className="App">
