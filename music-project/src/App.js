@@ -6,9 +6,8 @@ import logo from './assets/transparent_2_audio_house.png'
 import Header from './components/Header'
 import {Routes, Route, Link} from 'react-router-dom'
 import TopTracks from './components/TopTracks';
-import Track from './components/Track';
-import Artists from './components/Artists';
 import Genres from './components/Genres';
+import LikedSongs from './components/LikedSongs';
 
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
     const [login, setLogin] = useState("")
     const [searchKey, setSearchKey] = useState("")
     const [search, setSearch] = useState([])
-    // const [categories, setCategories] = useState([])
 
     useEffect(() => {
         const hash = window.location.hash
@@ -29,13 +27,9 @@ function App() {
 
         if (!token && hash) {
             token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
-
-            // window.location.hash = ""
             window.localStorage.setItem("token", token)
         }
-
         setLogin(token)
-
     }, [])
 
     const logout = () => {
@@ -47,36 +41,43 @@ function App() {
         e.preventDefault()
         const params = new URLSearchParams()
         params.append("q", searchKey)
-        params.append("type", "artist")
-        params.append("type", "track")
+        params.append("type", ["artist", "track"])
         const {data} = await axios.get("https://api.spotify.com/v1/search", {
             headers: {
                 Authorization: `Bearer ${login}`
             },
             params: params
         })
-    
-        setSearch(data.artists.items)
-        console.log(params)
+        const tracksAndArtists = data.artists.items.concat(data.tracks.items)
+        setSearch(tracksAndArtists)
+        console.log(tracksAndArtists)
     }
 
     const renderSearch = () => {
-    return search.map(result => (
-        <div key={result.id}>
-            {result.images.length ? <img width={"30%"} src={result.images[0].url} alt=""/> : <div>**No Image**</div>}
-            <br/>
-            {result.name}
-        </div>
-    ))
+    return search.map((result) => {
+        if (result.includes("track")) {
+            return (
+            <div key={result.id}>
+                <br/>
+                {result.name}<button>Like!</button>
+                {result.preview_url?.length ? <audio src={result.preview_url} controls /> : null}
+            </div>
+        )} else {
+            return(
+            <div>
+                {result.images?.length ? <img width={"30%"} src={result.images[0].url} alt=""/> : <div>**No Image**</div>}
+                {result.name}
+            </div>
+            )
+        }
+    })
 }
-    
 
     return (
         <div className="App">
             <Navbar/>
             <Routes>
-                <Route path="/track" element={<Track />}/>
-                <Route path="/artists" element={<Artists />}/>
+                <Route path="/liked_songs" element={<LikedSongs />}/>
                 <Route path="/top_tracks" element={<TopTracks token={login}/>}/>
                 <Route path="/genres" element={<Genres token={login}/>}/>
                 <Route path="/" element={ <Header 

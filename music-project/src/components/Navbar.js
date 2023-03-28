@@ -8,8 +8,7 @@ function Navbar({searchKey, token}) {
             <nav>
                 <ul className="navlinks">
                     <Link to="/"><li>Home</li></Link>
-                    <Link to="/track"><li>Tracks</li></Link>
-                    <Link to="/artists"><li>Artists</li></Link>
+                    <Link to="/liked_songs"><li>Liked Songs</li></Link>
                     <Link to='/top_tracks'><li>Top 50 Songs</li></Link>
                     <Link to='/genres'><li>Genres</li></Link>
                 </ul>

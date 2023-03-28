@@ -1,15 +1,13 @@
 
-function Track({name, image, artist}) {
-    
-    
+function Track({name, image, artist, preview}) {
 
     return(
         <div>
             <li>
                 <img src={image} alt={name}/>
                 <h1>{name}</h1>
-                <p>{artist}</p>
-                <button>Play!</button>
+                <h2>{artist}</h2>
+                <audio src={preview} controls />
             </li>
         </div>
     )

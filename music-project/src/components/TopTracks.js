@@ -20,12 +20,10 @@ const TopTracks = ({token}) => {
     setTopTracks(data.data.tracks.items)
     }
 
-
-
     const renderTopTracks = () => {
         return topTracks.map((track) => {
             return (
-                <Track key={track.track.id} name={track.track.name} image={track.track.album.images[1].url} artist={track.track.artists[0].name}/>
+                <Track key={track.track.id} name={track.track.name} image={track.track.album.images[1].url} artist={track.track.artists[0].name} preview={track.track.preview_url}/>
                 )
         })
     }
