@@ -8,12 +8,12 @@ import {Routes, Route, Link} from 'react-router-dom'
 import TopTracks from './components/TopTracks';
 import Track from './components/Track';
 import Artists from './components/Artists';
-import TopArtists from './components/TopArtists';
+import Genres from './components/Genres';
 
 
 function App() {
     
-    const CLIENT_ID = "d7a2390fb70f40daabcd0b4e18015d30"
+    const CLIENT_ID = "258f4aee5f9046da98df8bf5f53cd770"
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
@@ -78,7 +78,7 @@ function App() {
                 <Route path="/track" element={<Track />}/>
                 <Route path="/artists" element={<Artists />}/>
                 <Route path="/top_tracks" element={<TopTracks token={login}/>}/>
-                <Route path="/top_artists" element={<TopArtists token={login}/>}/>
+                <Route path="/genres" element={<Genres token={login}/>}/>
                 <Route path="/" element={ <Header 
                 logo={logo} 
                 clientId={CLIENT_ID} 

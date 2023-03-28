@@ -24,7 +24,6 @@ const TopTracks = ({token}) => {
 
     const renderTopTracks = () => {
         return topTracks.map((track) => {
-            console.log(track.track)
             return (
                 <Track key={track.track.id} name={track.track.name} image={track.track.album.images[1].url} artist={track.track.artists[0].name}/>
                 )
