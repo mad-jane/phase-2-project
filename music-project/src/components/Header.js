@@ -18,10 +18,22 @@ const Header = ({logo, clientId, redirectURI, authEndpoint, responseType, token,
             </div>
             <div className="search-section">
                 <h1 className="search-title">Search Music</h1>
-                <form onSubmit={(e) => searchResults(e)}>
+                {/* <form onSubmit={(e) => searchResults(e)}>
                     <input type="text" placeholder="Search Songs and Artists" onChange={e => setSearchKey(e.target.value)}/>
                     <button type={"submit"}>Search</button>
-                </form>
+                </form> */}
+                <div className="container">
+                    <div className="slider">
+                        <form className="form" onSubmit={(e) => searchResults(e)}>
+                            <span className="title">Search Music</span>
+                            <div className="form_control">
+                                <label className="label">Search</label>
+                                <input required="" className="input" type="text"onChange={e => setSearchKey(e.target.value)}/>
+                            </div>
+                            <button type={"submit"}>Submit</button>
+                        </form>
+                    </div>
+                </div>
                 <div id='results-container'>
                     <div id='artists-container'>
                         <h2>Artists</h2>
