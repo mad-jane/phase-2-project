@@ -12,7 +12,7 @@ import LikedSongs from './components/LikedSongs';
 
 function App() {
     
-    const CLIENT_ID = "258f4aee5f9046da98df8bf5f53cd770"
+    const CLIENT_ID = "d7a2390fb70f40daabcd0b4e18015d30"
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
@@ -20,6 +20,7 @@ function App() {
     const [login, setLogin] = useState("")
     const [searchKey, setSearchKey] = useState("")
     const [search, setSearch] = useState([])
+    const [likedSongs, setLikedSongs] = useState([])
 
     useEffect(() => {
         const hash = window.location.hash
@@ -41,16 +42,26 @@ function App() {
         e.preventDefault()
         const params = new URLSearchParams()
         params.append("q", searchKey)
-        params.append("type", ["artist", "track"])
+        params.append("type", ["track", "artist"])
         const {data} = await axios.get("https://api.spotify.com/v1/search", {
             headers: {
                 Authorization: `Bearer ${login}`
             },
             params: params
         })
-        const tracksAndArtists = data.artists.items.concat(data.tracks.items)
+        const tracksAndArtists = data.tracks.items.concat(data.artists.items)
         setSearch(tracksAndArtists)
         console.log(tracksAndArtists)
+    }
+
+    function handleLikeClick(track) {
+        if(!likedSongs.includes(track)) {
+            const updateLikedSongs = [...likedSongs, track]
+            setLikedSongs(updateLikedSongs)
+        } else if (likedSongs.includes(track)) {
+            const updateLikedSongs = likedSongs.filter((listItem) => track.id !== listItem.id)
+        setLikedSongs(updateLikedSongs)
+        }
     }
 
     const renderSearch = () => {
@@ -58,7 +69,7 @@ function App() {
                 <div key={result.id}>
                     {result.images?.length ? <img width={"30%"} src={result.images[0].url} alt=""/> : <div>**No Image**</div>}
                     <br/>
-                    {result.name}<button>Like!</button>
+                    {result.name}<button onClick={handleLikeClick}>Like!</button>
                     <br/>
                     {result.preview_url?.length ? <audio src={result.preview_url} controls /> : null}
                 </div>
@@ -70,7 +81,7 @@ function App() {
         <div className="App">
             <Navbar/>
             <Routes>
-                <Route path="/liked_songs" element={<LikedSongs />}/>
+                <Route path="/liked_songs" element={<LikedSongs handleLikeClick={handleLikeClick} likedSongs={likedSongs}/>}/>
                 <Route path="/top_tracks" element={<TopTracks token={login}/>}/>
                 <Route path="/genres" element={<Genres token={login}/>}/>
                 <Route path="/" element={ <Header 

@@ -1,9 +1,12 @@
+import Track from "./Track";
 
-function LikedSongs() {
-
-    return(
+function LikedSongs({likedSongs, handleLikeClick}) {
+    const displayTracks = likedSongs.map((track) => {
+        return <Track key={track.id} track={track} handleLikeClick={handleLikeClick}/>
+    })
+        return(
         <div>
-            <p>hello world</p>
+            {displayTracks}
         </div>
     )
 }
