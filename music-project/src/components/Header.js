@@ -23,11 +23,11 @@ const Header = ({logo, clientId, redirectURI, authEndpoint, responseType, token,
                     <button type={"submit"}>Search</button>
                 </form>
                 <div id='results-container'>
-                    <div id='results-container'>
+                    <div id='artists-container'>
                         <h2>Artists</h2>
                         {displayArtists}
                     </div>
-                    <div id='results-container'>
+                    <div id='songs-container'>
                         <h2>Songs</h2>
                         {displayTracks}
                     </div>

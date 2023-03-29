@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from 'axios';
 import Navbar from './components/Navbar';
-import logo from './assets/transparent_2_audio_house.png'
+import logo from './assets/transparent 2 audio house.png'
 import Header from './components/Header'
 import {Routes, Route} from 'react-router-dom'
 import TopTracks from './components/TopTracks';
@@ -12,7 +12,7 @@ import LikedSongs from './components/LikedSongs';
 
 function App() {
     
-    const CLIENT_ID = "d7a2390fb70f40daabcd0b4e18015d30"
+    const CLIENT_ID = "258f4aee5f9046da98df8bf5f53cd770"
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"

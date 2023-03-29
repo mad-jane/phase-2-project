@@ -2,12 +2,12 @@
 function Track({ track, handleLikeClick }) {
     return(
         <div>
-            <li>
+            <li id="track-card">
                 <img src={track.album.images[1].url} alt={track.name}/>
                 <h1>{track.name}</h1>
-                <h2>{track.artists[0].name}</h2>
+                <h3>{track.artists[0].name}</h3>
                 <audio src={track.preview_url} controls />
-                <button onClick={() => handleLikeClick(track)}>Like</button>
+                <button id="like-button" onClick={() => handleLikeClick(track)}>🖤</button>
             </li>
         </div>
     )
