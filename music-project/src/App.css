@@ -126,3 +126,8 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .login-button:active {
   background: linear-gradient(32deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
 }
+
+#results-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}

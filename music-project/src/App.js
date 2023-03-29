@@ -19,8 +19,9 @@ function App() {
 
     const [login, setLogin] = useState("")
     const [searchKey, setSearchKey] = useState("")
-    const [search, setSearch] = useState([])
     const [likedSongs, setLikedSongs] = useState([])
+    const [tracks, setTracks] = useState([])
+    const [artists, setArtists] = useState([])
 
     useEffect(() => {
         const hash = window.location.hash
@@ -49,12 +50,13 @@ function App() {
             },
             params: params
         })
-        const tracksAndArtists = data.tracks.items.concat(data.artists.items)
-        setSearch(tracksAndArtists)
-        console.log(tracksAndArtists)
+        
+        setArtists(data.artists.items)
+        setTracks(data.tracks.items)
     }
 
     function handleLikeClick(track) {
+        console.log(track)
         if(!likedSongs.includes(track)) {
             const updateLikedSongs = [...likedSongs, track]
             setLikedSongs(updateLikedSongs)
@@ -64,25 +66,27 @@ function App() {
         }
     }
 
-    const renderSearch = () => {
-        return search.map(result => (
-                <div key={result.id}>
-                    {result.images?.length ? <img width={"30%"} src={result.images[0].url} alt=""/> : <div>**No Image**</div>}
-                    <br/>
-                    {result.name}<button onClick={handleLikeClick}>Like!</button>
-                    <br/>
-                    {result.preview_url?.length ? <audio src={result.preview_url} controls /> : null}
-                </div>
-        ))
-    }
+    // const renderSearch = () => {
+    //     return search.map(result => (
+    //             <div key={result.id}>
+    //                 {result.images?.length ? <img width={"30%"} src={result.images[0].url} alt=""/> : <div>**No Image**</div>}
+    //                 <br/>
+    //                 {result.name}<button onClick={() => handleLikeClick(result)}>Like!</button>
+    //                 <br/>
+    //                 {result.preview_url?.length ? <audio src={result.preview_url} controls /> : null}
+    //             </div>
+    //     ))
+    // }
 
 
     return (
         <div className="App">
             <Navbar/>
             <Routes>
-                <Route path="/liked_songs" element={<LikedSongs handleLikeClick={handleLikeClick} likedSongs={likedSongs}/>}/>
-                <Route path="/top_tracks" element={<TopTracks token={login}/>}/>
+                <Route path="/liked_songs" element={<LikedSongs handleLikeClick={handleLikeClick}
+                likedSongs={likedSongs}
+                />}/>
+                <Route path="/top_tracks" element={<TopTracks token={login} handleLikeClick={handleLikeClick}/>}/>
                 <Route path="/genres" element={<Genres token={login}/>}/>
                 <Route path="/" element={ <Header 
                 logo={logo} 
@@ -94,7 +98,9 @@ function App() {
                 logout={logout}
                 searchResults={searchResults}
                 setSearchKey={setSearchKey}
-                renderSearch={renderSearch}
+                tracks={tracks}
+                artists={artists}
+                handleLikeClick={handleLikeClick}
                 />} />
             </Routes>
         </div>

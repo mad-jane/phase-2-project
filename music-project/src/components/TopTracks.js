@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import Track from './Track'
 
-const TopTracks = ({token}) => {
+const TopTracks = ({token, handleLikeClick}) => {
 
     useEffect(() => {
         top50Tracks()
@@ -23,7 +23,7 @@ const TopTracks = ({token}) => {
     const renderTopTracks = () => {
         return topTracks.map((track) => {
             return (
-                <Track key={track.track.id} name={track.track.name} image={track.track.album.images[1].url} artist={track.track.artists[0].name} preview={track.track.preview_url}/>
+                <Track key={track.track.id} track={track.track} handleLikeClick={handleLikeClick}/>
                 )
         })
     }

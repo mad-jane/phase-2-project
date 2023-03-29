@@ -1,5 +1,13 @@
+import Track from "./Track"
+import Artist from "./Artist"
 
-const Header = ({logo, clientId, redirectURI, authEndpoint, responseType, token, logout, searchResults, setSearchKey, renderSearch}) => {
+const Header = ({logo, clientId, redirectURI, authEndpoint, responseType, token, logout, searchResults, setSearchKey, artists, tracks, handleLikeClick}) => {
+    const displayTracks = tracks.map((track) => {
+        return <Track track={track} handleLikeClick={handleLikeClick}/>
+    })
+    const displayArtists = artists.map((artist) => {
+        return <Artist artist={artist}/>
+    })
     return (
         <div>
             <div className="app-header">
@@ -13,8 +21,17 @@ const Header = ({logo, clientId, redirectURI, authEndpoint, responseType, token,
                 <form onSubmit={(e) => searchResults(e)}>
                     <input type="text" placeholder="Search Songs and Artists" onChange={e => setSearchKey(e.target.value)}/>
                     <button type={"submit"}>Search</button>
-                    {renderSearch()}
                 </form>
+                <div id='results-container'>
+                    <div id='results-container'>
+                        <h2>Artists</h2>
+                        {displayArtists}
+                    </div>
+                    <div id='results-container'>
+                        <h2>Songs</h2>
+                        {displayTracks}
+                    </div>
+                </div>
             </div>
         </div>
     )
