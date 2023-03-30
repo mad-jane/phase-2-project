@@ -219,13 +219,15 @@ body {
 
 #track-card audio {
   width: 250px;
-  height: 20px;
+  height: 30px;
+  margin-top: 10px;
   opacity: 0.7;
   margin-right: 5px;
+  border-radius: 0;
 }
 
 audio::-webkit-media-controls-panel {
-  background-color: antiquewhite;
+  background-color: rgb(94, 77, 208);
 }
 
 #like-button {
@@ -248,6 +250,9 @@ audio::-webkit-media-controls-panel {
   position: relative;
   transition: all 0.3s;
   cursor: pointer;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  position: absolute;
   }
   
 #like-button::after {
@@ -456,3 +461,7 @@ audio::-webkit-media-controls-panel {
   margin: 20px auto 20px;
  }
 
+#navbar-logo {
+  height: 40px;
+  /* margin-top: 40px; */
+}

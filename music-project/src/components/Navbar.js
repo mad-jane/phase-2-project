@@ -1,17 +1,19 @@
 import React from "react";
 import {Link} from 'react-router-dom'
+import logo from '/Users/mad/development/code/phase-2/phase-2-project/music-project/src/assets/transparent 2 audio house.png'
 
-function Navbar({token, authEndpoint, logout, clientId, redirectURI, responseType }) {
+function Navbar({clientId, redirectURI, authEndpoint, responseType, token, logout}) {
     
     return(
         <header className="navbar">
             <nav>
+                    <img id="navbar-logo" src={logo} alt='logo' />
                 <ul className="navlinks">
                     <Link to="/"><li className="font-bold">Home</li></Link>
                     <Link to="/liked_songs"><li>Liked Songs</li></Link>
                     <Link to='/top_tracks'><li>Top 50 Songs</li></Link>
                     <Link to='/genres'><li>Genres</li></Link>
-                    {!token ?
+                {!token ?
                     <a className="login-button" href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=${responseType}`}>Login</a>
                     : <button onClick={logout} className="login-button">Logout</button>}
                 </ul>
