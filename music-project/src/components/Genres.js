@@ -30,9 +30,9 @@ function Genres({token}) {
     }
 
     return(
-        <div>
-            <h1>Today's Popular Genres</h1>
-            <ul>
+        <div className="genres-container">
+            <h1 className="genres-title">Today's Popular Genres</h1>
+            <ul className="genres-list">
                 {renderGenres()}
             </ul>
         </div>
