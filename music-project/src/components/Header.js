@@ -1,7 +1,7 @@
 import Track from "./Track"
 import Artist from "./Artist"
 
-const Header = ({logo, clientId, redirectURI, authEndpoint, responseType, token, logout, searchResults, setSearchKey, artists, tracks, handleLikeClick}) => {
+const Header = ({logo, searchResults, setSearchKey, artists, tracks, handleLikeClick}) => {
     const displayTracks = tracks.map((track) => {
         return <Track track={track} handleLikeClick={handleLikeClick}/>
     })

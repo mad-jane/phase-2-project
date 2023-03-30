@@ -230,7 +230,7 @@ audio::-webkit-media-controls-panel {
 
 #like-button {
   --glow-color: rgb(217, 176, 255);
-  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --glow-spread-color: rgba(191, 123, 255, 0.015);
   --enhanced-glow-color: rgb(231, 206, 255);
   --btn-color: rgb(100, 61, 136);
   border: -1.75em solid var(--glow-color);
@@ -242,14 +242,14 @@ audio::-webkit-media-controls-panel {
   border-radius: 2em;
   outline: none;
   box-shadow: 0 0 1em .25em var(--glow-color),
-         0 0 4em 1em var(--glow-spread-color),
-         inset 0 0 .75em .25em var(--glow-color);
+          0 0 4em 1em var(--glow-spread-color),
+          inset 0 0 .75em .25em var(--glow-color);
   text-shadow: 0 0 .5em var(--glow-color);
   position: relative;
   transition: all 0.3s;
   cursor: pointer;
- }
- 
+  }
+  
 #like-button::after {
   pointer-events: none;
   content: "";
