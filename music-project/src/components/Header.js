@@ -12,28 +12,13 @@ const Header = ({logo, clientId, redirectURI, authEndpoint, responseType, token,
         <div>
             <div className="app-header">
                 <img className="logo" src={logo} alt='audio-house-logo'></img>
-                {!token ?
-                    <a className="login-button" href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=${responseType}`}>Login</a>
-                    : <button onClick={logout} className="login-button">Logout</button>}
             </div>
             <div className="search-section">
                 <h1 className="search-title">Search Music</h1>
-                {/* <form onSubmit={(e) => searchResults(e)}>
-                    <input type="text" placeholder="Search Songs and Artists" onChange={e => setSearchKey(e.target.value)}/>
-                    <button type={"submit"}>Search</button>
-                </form> */}
-                <div className="container">
-                    <div className="slider">
-                        <form className="form" onSubmit={(e) => searchResults(e)}>
-                            <span className="title">Search Music</span>
-                            <div className="form_control">
-                                <label className="label">Search</label>
-                                <input required="" className="input" type="text"onChange={e => setSearchKey(e.target.value)}/>
-                            </div>
-                            <button type={"submit"}>Submit</button>
-                        </form>
-                    </div>
-                </div>
+                <form onSubmit={(e) => searchResults(e)}>
+                    <input className='search-box' type="text" placeholder="Search Songs and Artists" onChange={e => setSearchKey(e.target.value)}/>
+                    <button className='search-button' type={"submit"}>Search</button>
+                </form>
                 <div id='results-container'>
                     <div id='artists-container'>
                         <h2>Artists</h2>

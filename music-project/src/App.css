@@ -25,7 +25,9 @@ body {
   font-family: 'Bebas Neue';
   color: antiquewhite;
   font-size: 75px;
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  text-decoration: underline;
 }
 
 .app-header {
@@ -54,47 +56,45 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 30px 30px;
-    background-color: #393e46;
+    padding: 30px 20px;
+    background-color: rgba(71, 61, 139, 0.663);
     position: sticky;
     top: 0;
     width: 100%;
     opacity: 0.95;
     z-index: 2;
     height: 20px;
+    margin-bottom: 20px;
 }
 
 .navlinks li, a{
   font-family: 'Bebas Neue';
   font-weight: 400;
-  font-size: 20px;
+  font-size: 25px;
   text-decoration: none;
   color: #edf0f1;
-  background-color: #393e46;
+  background-color: transparent;
   padding: 10px 20px 10px 20px;
   list-style: none;
   display: inline-block;
-}
-
-.track-list ol {
-  list-style: decimal;
 }
 
 .login-button {
   text-decoration: none;
   position: relative;
   border: none;
-  font-size: 14px;
-  font-family: inherit;
+  font-size: 20px;
+  font-family: 'Bebas Neue';
   color: #fff;
-  width: 9em;
-  height: 2em;
-  line-height: 2em;
+  width: 60px;
+  height: 10px;
+  line-height: 10px;
   text-align: center;
   background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
   background-size: 300%;
   border-radius: 30px;
   z-index: 1;
+  margin-left: 50px;
 }
 
 .login-button:hover {
@@ -116,10 +116,10 @@ body {
 .login-button:before {
   content: '';
   position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
   z-index: -1;
   background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
   background-size: 400%;
@@ -135,11 +135,6 @@ body {
   background: linear-gradient(32deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
 }
 
-/* #results-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-} */
-
 #results-container {
   display: flex;
   flex-direction: row;
@@ -153,12 +148,14 @@ body {
 #artists-container {
   display: flex;
   flex-direction: column;
-  background-color: #03a9f4;
+  background-color: #03a8f47e;
   font-family: 'Bebas Neue';
   color: antiquewhite;
   width: 200px;
   height: max-content;
   border-radius: 25px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #songs-container {
@@ -168,19 +165,27 @@ body {
   color: antiquewhite;
   width: 700px;
   height: max-content;
-  background-color: #393e46;
+  background-color: #e6e6fa6e;
   border-radius: 25px;
   margin-left: 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #track-card img{
   border-radius: 50%;
   width: 150px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #artist-card img{
   border-radius: 50%;
   width: 150px;
+  height: 150px;
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  object-fit: scale-down;
 }
 
 #track-card {
@@ -197,12 +202,14 @@ body {
   font-size: 50px;
   margin-bottom: 10px;
   margin-top: 5px;
+  text-decoration: underline;
 }
 
 #songs-container h2 {
   font-size: 50px;
   margin-bottom: 10px;
   margin-top: 5px;
+  text-decoration: underline;
 }
 
 #songs-container h3 {
@@ -215,6 +222,10 @@ body {
   height: 20px;
   opacity: 0.7;
   margin-right: 5px;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: antiquewhite;
 }
 
 #like-button {
@@ -282,8 +293,6 @@ body {
   display: flex;
 }
 
-
-
 .form {
   display: flex;
   flex-direction: column;
@@ -299,75 +308,117 @@ body {
   font-size: 2em;
 }
 
-form .form_control {
-  width: 75%;
-  position: relative;
-}
-
-form .form_control .label {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transition: transform ease 0.2s;
-  transform: translate(0%, -50%);
-  font-size: 0.75em;
-  user-select: none;
-  pointer-events: none;
-  color: #b0b0b0;
-}
-
-form .form_control .input {
-  width: 100%;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: #fff;
-  padding: 0.5rem;
-  font-size: 0.75rem;
-  border-radius: 5px;
-  transition: box-shadow ease 0.2s;
-  box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e;
-}
-
-form .form_control .input:focus,
-form .form_control .input:valid {
-  box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 3px 3px 4px #0e0e0e, inset -3px -3px 4px #5f5e5e;
-}
-
-form .form_control .input:focus + .label,
-form .form_control .input:valid + .label {
-  transform: translate(-150%, -50%);
-}
-
-form button {
-  width: 25%;
-  height: 20px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: #fff;
-  margin-bottom: 10px;
-  font-size: 0.75rem;
-  border-radius: 5px;
-  transition: box-shadow ease 0.1s;
-  box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%), inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
-}
-
-form button:active {
-  box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 3px 3px 4px #0e0e0e, inset -3px -3px 4px #5f5e5e;
-}
-
-.bottom_text {
-  font-size: 0.65em;
-}
-
-.bottom_text .swtich {
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.search-section{
+.search-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  background-color: rgba(71, 61, 139, 0.663);
+  height: 185px;
+  border-radius: 25px;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.search-button {
+  padding: 14px 40px;
+  border-radius: 50px;
+  border: 0;
+  background-color: rgba(255, 0, 255, 0.735);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 20px;
+  transition: all .5s ease;
+  font-family: 'Bebas Neue';
+  color: antiquewhite;
+  cursor: pointer;
+ }
+ 
+ .search-button:hover {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+ }
+ 
+ .search-button:active {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+ }
+
+ .search-box {
+  border-radius: 25px;
+  height: 50px;
+  width: 300px;
+  margin-right: 5px;
+  padding-left: 20px;
+  font-family: 'Bebas Neue';
+  font-size: 20px;
+  background-color: rgb(251, 246, 239);
+ }
+
+ .liked-songs-title {
+  font-family: 'Bebas Neue';
+  color: antiquewhite;
+  font-size: 75px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-decoration: underline;
+ }
+
+ .liked-songs-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  font-family: 'Bebas Neue';
+  color: antiquewhite;
+  width: 700px;
+  height: max-content;
+  background-color: #e6e6fa6e;
+  margin: 20px auto;
+  padding-bottom: 30px;
+ }
+
+ .track-line {
+  width: 400px;
+  margin-bottom: 20px;
+  color: rgba(250, 235, 215, 0.239);
+  margin: 20px auto 20px;
+ }
+
+ .artist-line {
+  width: 100px;
+  margin-bottom: 20px;
+  color: rgba(250, 235, 215, 0.239);
+  margin: 20px auto 20px;
+ }
+
+ .top-tracks-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  font-family: 'Bebas Neue';
+  color: antiquewhite;
+  width: 700px;
+  height: max-content;
+  background-color: #e6e6fa6e;
+  margin: 20px auto;
+  padding-bottom: 30px;
+ }
+
+ .top-tracks-title {
+  font-family: 'Bebas Neue';
+  color: antiquewhite;
+  font-size: 75px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-decoration: underline;
+ }
+

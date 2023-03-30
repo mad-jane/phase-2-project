@@ -8,7 +8,8 @@ function LikedSongs({likedSongs, handleLikeClick, track}) {
             handleLikeClick={handleLikeClick}/>
     })
         return(
-        <div>
+        <div className='liked-songs-container'>
+            <h1 className='liked-songs-title'>Liked Songs</h1>
             {displayTracks}
         </div>
     )

@@ -81,7 +81,14 @@ function App() {
 
     return (
         <div className="App">
-            <Navbar/>
+            <Navbar
+            clientId={CLIENT_ID} 
+            redirectURI={REDIRECT_URI} 
+            authEndpoint={AUTH_ENDPOINT} 
+            responseType={RESPONSE_TYPE} 
+            token={login} 
+            logout={logout}
+            />
             <Routes>
                 <Route path="/liked_songs" element={<LikedSongs handleLikeClick={handleLikeClick}
                 likedSongs={likedSongs}

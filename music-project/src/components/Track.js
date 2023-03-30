@@ -9,6 +9,7 @@ function Track({ track, handleLikeClick }) {
                 <audio src={track.preview_url} controls />
                 <button id="like-button" onClick={() => handleLikeClick(track)}>🖤</button>
             </li>
+            <hr className='track-line'/>
         </div>
     )
 }

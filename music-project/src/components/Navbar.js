@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 
-function Navbar() {
+function Navbar({token, authEndpoint, logout, clientId, redirectURI, responseType }) {
     
     return(
         <header className="navbar">
@@ -11,6 +11,9 @@ function Navbar() {
                     <Link to="/liked_songs"><li>Liked Songs</li></Link>
                     <Link to='/top_tracks'><li>Top 50 Songs</li></Link>
                     <Link to='/genres'><li>Genres</li></Link>
+                    {!token ?
+                    <a className="login-button" href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=${responseType}`}>Login</a>
+                    : <button onClick={logout} className="login-button">Logout</button>}
                 </ul>
             </nav>
     </header>

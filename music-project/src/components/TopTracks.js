@@ -29,8 +29,8 @@ const TopTracks = ({token, handleLikeClick}) => {
     }
 
     return (
-        <div>
-            <h1>Global Top 50</h1>
+        <div className="top-tracks-container">
+            <h1 className="top-tracks-title">Global Top 50</h1>
             <ol className='track-list'>
                 {renderTopTracks()}
             </ol>
