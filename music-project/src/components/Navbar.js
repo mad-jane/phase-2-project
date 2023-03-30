@@ -6,8 +6,8 @@ function Navbar({clientId, redirectURI, authEndpoint, responseType, token, logou
     
     return(
         <header className="navbar">
+                <img id="navbar-logo" src={logo} alt='logo' />
             <nav>
-                    <img id="navbar-logo" src={logo} alt='logo' />
                 <ul className="navlinks">
                     <Link to="/"><li className="font-bold">Home</li></Link>
                     <Link to="/liked_songs"><li>Liked Songs</li></Link>

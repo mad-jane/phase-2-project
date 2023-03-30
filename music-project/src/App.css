@@ -54,7 +54,7 @@ body {
 .navbar {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     padding: 30px 20px;
     background-color: rgba(71, 61, 139, 0.663);
@@ -77,6 +77,10 @@ body {
   padding: 10px 20px 10px 20px;
   list-style: none;
   display: inline-block;
+}
+
+.navlinks {
+  margin-left: 420px;
 }
 
 .login-button {
