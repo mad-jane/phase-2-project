@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom'
-import logo from 'src/transparent 2 audio house.png'
+import logo from '/Users/mad/development/code/phase-2/phase-2-project/music-project/src/transparent 2 audio house.png'
 
 function Navbar({clientId, redirectURI, authEndpoint, responseType, token, logout}) {
     
