@@ -6,7 +6,7 @@ function Navbar({clientId, redirectURI, authEndpoint, responseType, token, logou
     
     return(
         <header className="navbar">
-                <img id="navbar-logo" src='src/assets/transparent-2-audio-house.png' alt='logo' />
+                <img id="navbar-logo" src='/Users/mad/development/code/phase-2/phase-2-project/music-project/src/assets/transparent-2-audio-house.png' alt='logo' />
             <nav>
                 <ul className="navlinks">
                     <Link to="/"><li className="font-bold">Home</li></Link>
