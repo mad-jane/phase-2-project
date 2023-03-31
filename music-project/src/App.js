@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from 'axios';
 import Navbar from './components/Navbar';
-import logo from '/Users/mad/development/code/phase-2/phase-2-project/music-project/src/transparent 2 audio house.png'
+import logo from 'transparent 2 audio house.png'
 import Header from './components/Header'
 import {Routes, Route} from 'react-router-dom'
 import TopTracks from './components/TopTracks';
