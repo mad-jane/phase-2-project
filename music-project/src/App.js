@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from 'axios';
 import Navbar from './components/Navbar';
-// import logo from './transparent 2 audio house.png'
+import logo from './transparent-2-audio-house.png'
 import Header from './components/Header'
 import {Routes, Route} from 'react-router-dom'
 import TopTracks from './components/TopTracks';
@@ -96,7 +96,7 @@ function App() {
                 <Route path="/top_tracks" element={<TopTracks token={login} handleLikeClick={handleLikeClick}/>}/>
                 <Route path="/genres" element={<Genres token={login}/>}/>
                 <Route path="/" element={ <Header 
-                // logo={logo} 
+                logo={logo} 
                 clientId={CLIENT_ID} 
                 redirectURI={REDIRECT_URI} 
                 authEndpoint={AUTH_ENDPOINT} 

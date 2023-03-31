@@ -1,12 +1,12 @@
 import React from "react";
 import {Link} from 'react-router-dom'
-// import logo from './transparent 2 audio house.png'
+import logo from './transparent-2-audio-house.png'
 
 function Navbar({clientId, redirectURI, authEndpoint, responseType, token, logout}) {
     
     return(
         <header className="navbar">
-                {/* <img id="navbar-logo" src={logo} alt='logo' /> */}
+                <img id="navbar-logo" src={logo} alt='logo' />
             <nav>
                 <ul className="navlinks">
                     <Link to="/"><li className="font-bold">Home</li></Link>
