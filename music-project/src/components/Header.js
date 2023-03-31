@@ -11,7 +11,7 @@ const Header = ({logo, searchResults, setSearchKey, artists, tracks, handleLikeC
     return (
         <div>
             <div className="app-header">
-                <img className="logo" src={logo} alt='audio-house-logo'></img>
+                {/* <img className="logo" src={logo} alt='audio-house-logo'></img> */}
             </div>
             <div className="search-section">
                 <h1 className="search-title">Search Music</h1>
